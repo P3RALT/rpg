@@ -1,0 +1,599 @@
+/* style-criacao.css - Estilo específico para a página de criação */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&family=UnifrakturMaguntia&display=swap');
+
+:root {
+    --parchment: #f4ecd8;
+    --aged-paper: #e8dfc8;
+    --ink-dark: #1a1a1a;
+    --ink-faded: #4a4a4a;
+    --stain-brown: #8b4513;
+    --stain-red: #8b0000;
+    --stain-teal: #2f4f4f;
+    --gold-accent: #d4af37;
+}
+
+body.newspaper-theme.sheet-page {
+    background: #1a1a1a url('https://www.transparenttextures.com/patterns/black-paper.png');
+    font-family: 'Special Elite', serif;
+    color: var(--ink-dark);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container principal da ficha */
+.sheet-container {
+    background: var(--parchment);
+    background-image: 
+        url('https://www.transparenttextures.com/patterns/paper.png'),
+        linear-gradient(to bottom, rgba(244, 236, 216, 0.9), rgba(232, 223, 200, 0.9));
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 25px 35px;
+    border: 15px double var(--stain-brown);
+    position: relative;
+    box-shadow: 
+        0 0 50px rgba(0, 0, 0, 0.8),
+        inset 0 0 30px rgba(139, 69, 19, 0.1);
+    overflow: hidden;
+}
+
+/* Efeitos de manchas no papel */
+.sheet-container::before,
+.sheet-container::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sheet-container::before {
+    top: 10%;
+    left: 5%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.sheet-container::after {
+    bottom: 15%;
+    right: 8%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(47, 79, 79, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+/* Selo CONFIDENCIAL */
+.stamp {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transform: rotate(15deg);
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 2.2rem;
+    color: var(--stain-red);
+    opacity: 0.3;
+    border: 3px solid var(--stain-red);
+    padding: 5px 15px;
+    z-index: 2;
+}
+
+/* Barra de ferramentas */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--stain-brown);
+    position: relative;
+    z-index: 3;
+}
+
+.toolbar button {
+    background: var(--stain-brown);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toolbar button:hover {
+    background: var(--stain-red);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+}
+
+.toolbar .btn-pdf {
+    background: var(--stain-teal);
+}
+
+.toolbar .btn-pdf:hover {
+    background: #1e3e3e;
+}
+
+/* Cabeçalho da ficha */
+.sheet-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.sheet-header h1 {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 3rem;
+    color: var(--ink-dark);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.title-input {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid var(--stain-brown);
+    font-family: 'Special Elite', serif;
+    font-size: 1.5rem;
+    color: var(--stain-red);
+    text-align: center;
+    width: 60%;
+    margin-top: 10px;
+    padding: 5px 0;
+    transition: all 0.3s;
+}
+
+.title-input:focus {
+    outline: none;
+    border-bottom-color: var(--stain-red);
+    width: 70%;
+}
+
+/* Layout de colunas da ficha */
+.sheet-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Coluna individual */
+.sheet-column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Seções da ficha */
+.sheet-section {
+    background: var(--aged-paper);
+    border: 1px solid var(--stain-brown);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(139, 69, 19, 0.1);
+}
+
+.sheet-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.sheet-section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--stain-teal);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--stain-brown);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sheet-section h2 i {
+    color: var(--stain-red);
+}
+
+/* Atributos */
+.attr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.attr-item {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--stain-brown);
+    padding: 15px 10px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.attr-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.attr-label {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--stain-teal);
+    margin-bottom: 10px;
+    display: block;
+    letter-spacing: 1px;
+}
+
+.attr-input {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--stain-brown);
+    background: transparent;
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--stain-red);
+    text-align: center;
+    transition: all 0.3s;
+    margin: 0 auto;
+    display: block;
+}
+
+.attr-input:focus {
+    outline: none;
+    border-color: var(--stain-red);
+    transform: scale(1.1);
+}
+
+/* Perícias */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px dashed var(--stain-brown);
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.skill-item:hover {
+    background: rgba(255, 255, 255, 0.6);
+    padding-left: 15px;
+}
+
+.skill-name {
+    font-family: 'Special Elite', serif;
+    color: var(--ink-dark);
+    font-size: 1rem;
+}
+
+.skill-input {
+    width: 50px;
+    border: 1px solid var(--stain-brown);
+    background: transparent;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--stain-red);
+    text-align: center;
+    padding: 5px;
+    transition: all 0.3s;
+}
+
+.skill-input:focus {
+    outline: none;
+    border-color: var(--stain-red);
+    transform: scale(1.1);
+}
+
+/* Campos dinâmicos */
+.dynamic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.dynamic-field {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.field-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--stain-brown);
+    padding: 8px 0;
+    font-family: 'Special Elite', serif;
+    color: var(--ink-dark);
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.field-input:focus {
+    outline: none;
+    border-bottom-color: var(--stain-red);
+}
+
+.btn-add {
+    background: var(--stain-teal);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.btn-add:hover {
+    background: var(--stain-red);
+    transform: rotate(90deg) scale(1.1);
+}
+
+.btn-remove {
+    background: transparent;
+    border: 1px solid var(--stain-red);
+    color: var(--stain-red);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.btn-remove:hover {
+    background: var(--stain-red);
+    color: white;
+}
+
+/* Campos de texto grandes */
+.textarea-box {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--stain-brown);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.textarea-box label {
+    font-family: 'Cinzel', serif;
+    color: var(--stain-teal);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.large-textarea {
+    width: 100%;
+    min-height: 200px;
+    background: transparent;
+    border: 1px solid var(--stain-brown);
+    padding: 15px;
+    font-family: 'Special Elite', serif;
+    font-size: 1rem;
+    color: var(--ink-dark);
+    line-height: 1.6;
+    resize: vertical;
+    transition: all 0.3s;
+}
+
+.large-textarea:focus {
+    outline: none;
+    border-color: var(--stain-red);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.1);
+}
+
+/* Informações vitais */
+.vital-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.vital-item {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--stain-brown);
+    padding: 15px;
+    text-align: center;
+}
+
+.vital-label {
+    font-family: 'Cinzel', serif;
+    color: var(--stain-teal);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    display: block;
+    letter-spacing: 1px;
+}
+
+.vital-input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--stain-brown);
+    background: transparent;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--stain-red);
+    text-align: center;
+    padding: 5px 0;
+    transition: all 0.3s;
+}
+
+.vital-input:focus {
+    outline: none;
+    border-bottom-color: var(--stain-red);
+}
+
+/* Barra de status */
+.status-bar {
+    margin-top: 10px;
+    position: relative;
+}
+
+.bar-container {
+    height: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--stain-brown);
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: var(--stain-red);
+    transition: width 0.5s ease;
+}
+
+.bar-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Special Elite', serif;
+    font-size: 0.8rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Inventário */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.inventory-section {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--stain-brown);
+    padding: 15px;
+}
+
+.inventory-section h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--stain-teal);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--stain-brown);
+}
+
+.inventory-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--stain-brown);
+    padding: 8px 0;
+    font-family: 'Special Elite', serif;
+    color: var(--ink-dark);
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+
+.inventory-input:focus {
+    outline: none;
+    border-bottom-color: var(--stain-red);
+}
+
+.inventory-textarea {
+    width: 100%;
+    min-height: 150px;
+    background: transparent;
+    border: 1px solid var(--stain-brown);
+    padding: 10px;
+    font-family: 'Special Elite', serif;
+    color: var(--ink-dark);
+    resize: vertical;
+    transition: all 0.3s;
+}
+
+.inventory-textarea:focus {
+    outline: none;
+    border-color: var(--stain-red);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sheet-container {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .sheet-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .attr-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .inventory-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stamp {
+        font-size: 1.5rem;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* Estilos para impressão/PDF */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .sheet-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .stamp {
+        opacity: 0.5;
+    }
+}

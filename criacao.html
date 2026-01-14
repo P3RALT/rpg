@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIMBO - Arquivo de Alistamento</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-criacao.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body class="newspaper-theme sheet-page">
+    <div class="sheet-container">
+        <!-- Selo confidencial -->
+        <div class="stamp">CONFIDENCIAL</div>
+        
+        <!-- Barra de ferramentas -->
+        <div class="toolbar no-print">
+            <button onclick="saveCharacter()">
+                <i class="fas fa-save"></i> SALVAR
+            </button>
+            <div class="toolbar-group">
+                <button onclick="window.location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i> VOLTAR
+                </button>
+                <button class="btn-pdf" onclick="generatePDF()">
+                    <i class="fas fa-file-pdf"></i> GERAR PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Cabeçalho da ficha -->
+        <header class="sheet-header">
+            <h1>LIMBO: FICHA DE AGENTE</h1>
+            <input type="text" id="char_nome" class="title-input" placeholder="NOME DO AGENTE">
+            <div class="header-subtitle">
+                <span id="char_level">NÍVEL 1</span> • 
+                <span id="char_origin">ORIGEM</span> • 
+                <span id="char_connection">CONEXÃO</span>
+            </div>
+        </header>
+
+        <!-- Layout principal em colunas -->
+        <div class="sheet-columns">
+            <!-- Coluna 1: Atributos e Perícias -->
+            <div class="sheet-column">
+                <!-- Atributos -->
+                <div class="sheet-section">
+                    <h2><i class="fas fa-dumbbell"></i> ATRIBUTOS</h2>
+                    <div class="attr-grid">
+                        <div class="attr-item">
+                            <span class="attr-label">FORÇA</span>
+                            <input type="number" id="attr_forca" class="attr-input" value="1" min="1" max="5">
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">AGILIDADE</span>
+                            <input type="number" id="attr_agilidade" class="attr-input" value="1" min="1" max="5">
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">VIGOR</span>
+                            <input type="number" id="attr_vigor" class="attr-input" value="1" min="1" max="5">
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">INTELIGÊNCIA</span>
+                            <input type="number" id="attr_inteligencia" class="attr-input" value="1" min="1" max="5">
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">SABEDORIA</span>
+                            <input type="number" id="attr_sabedoria" class="attr-input" value="1" min="1" max="5">
+                        </div>
+                        <div class="attr-item">
+                            <span class="attr-label">SOCIAL</span>
+                            <input type="number" id="attr_social" class="attr-input" value="1" min="1" max="5">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perícias -->
+                <div class="sheet-section">
+                    <h2><i class="fas fa-tools"></i> PERÍCIAS</h2>
+                    <div class="skills-grid">
+                        <!-- Força -->
+                        <div class="skill-item">
+                            <span class="skill-name">Atletismo</span>
+                            <input type="number" id="sk_atletismo" class="skill-input" value="0">
+                        </div>
+                        
+                        <!-- Agilidade -->
+                        <div class="skill-item">
+                            <span class="skill-name">Acrobacia</span>
+                            <input type="number" id="sk_acrobacia" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Furtividade</span>
+                            <input type="number" id="sk_furtividade" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Prestidigitação</span>
+                            <input type="number" id="sk_prestidigitacao" class="skill-input" value="0">
+                        </div>
+                        
+                        <!-- Inteligência -->
+                        <div class="skill-item">
+                            <span class="skill-name">Ciências</span>
+                            <input type="number" id="sk_ciencias" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">História</span>
+                            <input type="number" id="sk_historia" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Investigação</span>
+                            <input type="number" id="sk_investigacao" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Ocultismo</span>
+                            <input type="number" id="sk_ocultismo" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Tecnologia</span>
+                            <input type="number" id="sk_tecnologia" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Ofício</span>
+                            <input type="number" id="sk_oficio" class="skill-input" value="0">
+                        </div>
+                        
+                        <!-- Sabedoria -->
+                        <div class="skill-item">
+                            <span class="skill-name">Intuição</span>
+                            <input type="number" id="sk_intuicao" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Medicina</span>
+                            <input type="number" id="sk_medicina" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Religião</span>
+                            <input type="number" id="sk_religiao" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Sobrevivência</span>
+                            <input type="number" id="sk_sobrevivencia" class="skill-input" value="0">
+                        </div>
+                        
+                        <!-- Social -->
+                        <div class="skill-item">
+                            <span class="skill-name">Atualidades</span>
+                            <input type="number" id="sk_atualidades" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Enganação</span>
+                            <input type="number" id="sk_enganacao" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Intimidação</span>
+                            <input type="number" id="sk_intimidacao" class="skill-input" value="0">
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Persuasão</span>
+                            <input type="number" id="sk_persuasao" class="skill-input" value="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Informações vitais e habilidades -->
+            <div class="sheet-column">
+                <!-- Informações vitais -->
+                <div class="sheet-section">
+                    <h2><i class="fas fa-heartbeat"></i> STATUS VITAIS</h2>
+                    <div class="vital-stats">
+                        <div class="vital-item">
+                            <span class="vital-label">NÍVEL</span>
+                            <input type="number" id="char_nivel" class="vital-input" value="1" min="1" max="20">
+                        </div>
+                        <div class="vital-item">
+                            <span class="vital-label">EXPERIÊNCIA</span>
+                            <input type="number" id="char_xp" class="vital-input" value="0" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="vital-stats" style="margin-top: 20px;">
+                        <div class="vital-item">
+                            <span class="vital-label">VIDA</span>
+                            <input type="text" id="char_vida" class="vital-input" value="10/10">
+                            <div class="status-bar">
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 100%"></div>
+                                    <span class="bar-label">10/10</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vital-item">
+                            <span class="vital-label">PONTOS DE ESFORÇO</span>
+                            <input type="text" id="char_pe" class="vital-input" value="5/5">
+                            <div class="status-bar">
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 100%"></div>
+                                    <span class="bar-label">5/5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vital-item">
+                            <span class="vital-label">SANIDADE</span>
+                            <input type="text" id="char_sanidade" class="vital-input" value="80%">
+                            <div class="status-bar">
+                                <div class="bar-container">
+                                    <div class="bar-fill" style="width: 80%"></div>
+                                    <span class="bar-label">80%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vital-item">
+                            <span class="vital-label">DEFESA</span>
+                            <input type="number" id="char_defesa" class="vital-input" value="10">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Habilidades de profissão -->
+                <div class="sheet-section">
+                    <h2><i class="fas fa-briefcase"></i> PROFISSÃO</h2>
+                    <div class="vital-stats">
+                        <div class="vital-item">
+                            <span class="vital-label">NOME</span>
+                            <input type="text" id="prof_nome" class="vital-input" placeholder="Ex: Investigador">
+                        </div>
+                        <div class="vital-item">
+                            <span class="vital-label">NÍVEL</span>
+                            <select id="prof_nivel" class="vital-input">
+                                <option value="1">Nível 1</option>
+                                <option value="2">Nível 2</option>
+                                <option value="3">Nível 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="textarea-box">
+                        <label>GATILHO</label>
+                        <textarea id="prof_gatilho" class="large-textarea" placeholder="Quando a profissão é ativada..."></textarea>
+                    </div>
+                    
+                    <div class="textarea-box">
+                        <label>RECOMPENSA</label>
+                        <textarea id="prof_recompensa" class="large-textarea" placeholder="O que o personagem recebe ao ativar..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Habilidades de conexão -->
+        <div class="sheet-section">
+            <h2><i class="fas fa-link"></i> HABILIDADES DE CONEXÃO</h2>
+            <div class="dynamic-list" id="conexao-list">
+                <div class="dynamic-field">
+                    <input type="text" class="field-input" placeholder="Nome da habilidade (Nível 1)">
+                    <textarea class="field-input" placeholder="Descrição da habilidade..."></textarea>
+                    <button class="btn-remove" onclick="removeField(this)">×</button>
+                </div>
+            </div>
+            <button class="btn-add no-print" onclick="addField('conexao-list')">+</button>
+        </div>
+
+        <!-- Rituais -->
+        <div class="sheet-section">
+            <h2><i class="fas fa-hat-wizard"></i> RITUAIS</h2>
+            <div class="dynamic-list" id="rituais-list">
+                <div class="dynamic-field">
+                    <input type="text" class="field-input" placeholder="Nome do ritual">
+                    <input type="text" class="field-input" placeholder="Custo (PE/San)">
+                    <input type="text" class="field-input" placeholder="Execução, Alcance, Duração">
+                    <button class="btn-remove" onclick="removeField(this)">×</button>
+                </div>
+            </div>
+            <button class="btn-add no-print" onclick="addField('rituais-list', true)">+</button>
+        </div>
+
+        <!-- Inventário -->
+        <div class="sheet-section">
+            <h2><i class="fas fa-backpack"></i> INVENTÁRIO</h2>
+            <div class="inventory-grid">
+                <div class="inventory-section">
+                    <h3>ARMAS</h3>
+                    <input type="text" class="inventory-input" placeholder="Nome da arma">
+                    <input type="text" class="inventory-input" placeholder="Dano">
+                    <input type="text" class="inventory-input" placeholder="Crítico">
+                    <input type="text" class="inventory-input" placeholder="Alcance">
+                    <textarea class="inventory-textarea" placeholder="Outras armas..."></textarea>
+                </div>
+                
+                <div class="inventory-section">
+                    <h3>EQUIPAMENTOS</h3>
+                    <textarea class="inventory-textarea" placeholder="Liste seus equipamentos..."></textarea>
+                    
+                    <h3 style="margin-top: 20px;">DINHEIRO</h3>
+                    <input type="text" class="inventory-input" id="char_dinheiro" placeholder="CR$ 0">
+                </div>
+            </div>
+        </div>
+
+        <!-- Histórico -->
+        <div class="sheet-section">
+            <h2><i class="fas fa-scroll"></i> HISTÓRICO & DESCRIÇÃO</h2>
+            <div class="textarea-box">
+                <label>APARÊNCIA & PERSONALIDADE</label>
+                <textarea id="char_descricao" class="large-textarea" placeholder="Descreva a aparência, personalidade, manias e características marcantes do personagem..."></textarea>
+            </div>
+            
+            <div class="textarea-box">
+                <label>HISTÓRIA</label>
+                <textarea id="char_historia" class="large-textarea" placeholder="Conte a história do personagem, seu passado, motivações e objetivos..."></textarea>
+            </div>
+            
+            <div class="textarea-box">
+                <label>TRAUMAS & CONDIÇÕES</label>
+                <textarea id="char_traumas" class="large-textarea" placeholder="Traumas, fobias, condições mentais ou físicas..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="script-criacao.js"></script>
+</body>
+</html>
