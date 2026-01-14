@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIMBO - Gazeta da Sobrevivência</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+</head>
+<body class="newspaper-theme">
+    <div class="newspaper-container">
+        <!-- Cabeçalho estilo jornal vintage -->
+        <header class="newspaper-header">
+            <div class="newspaper-masthead">
+                <div class="masthead-left">
+                    <span class="volume">VOL. XIII</span>
+                    <span class="issue">Nº 666</span>
+                </div>
+                <div class="masthead-center">
+                    <div class="date-header">EDIÇÃO EXTRA | 10 DE MARÇO, 2015</div>
+                    <h1 class="newspaper-title">LIMBO</h1>
+                    <div class="subtitle">Gazeta da Sobrevivência</div>
+                </div>
+                <div class="masthead-right">
+                    <span class="price">CR$ 13,00</span>
+                    <span class="location">SÃO PAULO</span>
+                </div>
+            </div>
+            
+            <div class="header-divider">
+                <div class="divider-line"></div>
+                <div class="divider-text">PROFECIAS INACABADAS</div>
+                <div class="divider-line"></div>
+            </div>
+        </header>
+
+        <!-- Layout principal em colunas -->
+        <div class="main-layout">
+            <!-- Coluna 1: Registro de Agentes -->
+            <section class="column">
+                <div class="column-header">
+                    <h2 class="section-title"><i class="fas fa-file-contract"></i> REGISTRO DE AGENTES</h2>
+                    <div class="header-ornament"></div>
+                </div>
+                
+                <div id="char-list" class="char-grid">
+                    <!-- Personagens serão carregados aqui -->
+                    <div class="empty-state">
+                        <i class="fas fa-ghost"></i>
+                        <p>Nenhum agente registrado</p>
+                        <p class="empty-hint">Crie seu primeiro personagem para começar</p>
+                    </div>
+                </div>
+                
+                <button class="btn-paper" onclick="newCharacter()">
+                    <i class="fas fa-user-plus"></i> ALISTAR NOVO AGENTE
+                </button>
+            </section>
+
+            <!-- Coluna 2: Utilitários -->
+            <section class="column">
+                <!-- Ordem de Iniciativa -->
+                <div class="panel panel-aged">
+                    <div class="panel-header">
+                        <h2 class="section-title"><i class="fas fa-list-ol"></i> ORDEM DE INICIATIVA</h2>
+                    </div>
+                    
+                    <div class="init-row">
+                        <div class="input-group">
+                            <input type="text" id="init-name" placeholder="Nome do Agente" class="paper-input">
+                            <span class="input-label">NOME</span>
+                        </div>
+                        <div class="input-group">
+                            <input type="number" id="init-val" placeholder="0" class="paper-input" min="0" max="99">
+                            <span class="input-label">INI</span>
+                        </div>
+                        <button class="btn-small" onclick="addInitiative()">
+                            <i class="fas fa-plus"></i> ADD
+                        </button>
+                    </div>
+                    
+                    <ul id="init-list" class="init-list">
+                        <!-- Iniciativas serão listadas aqui -->
+                    </ul>
+                    
+                    <button class="btn-clean" onclick="clearInitiative()">
+                        <i class="fas fa-broom"></i> Limpar Tudo
+                    </button>
+                </div>
+
+                <!-- Sorte ou Azar -->
+                <div class="panel panel-aged">
+                    <div class="panel-header">
+                        <h2 class="section-title"><i class="fas fa-dice"></i> SORTE OU AZAR</h2>
+                    </div>
+                    
+                    <div class="dice-grid">
+                        <button class="dice-btn" onclick="rollDice(20)">
+                            <span class="dice-type">d20</span>
+                            <span class="dice-desc">Decisivo</span>
+                        </button>
+                        <button class="dice-btn" onclick="rollDice(6)">
+                            <span class="dice-type">d6</span>
+                            <span class="dice-desc">Comum</span>
+                        </button>
+                        <button class="dice-btn" onclick="rollDice(100)">
+                            <span class="dice-type">d100</span>
+                            <span class="dice-desc">Crítico</span>
+                        </button>
+                        <button class="dice-btn" onclick="rollDice(10)">
+                            <span class="dice-type">d10</span>
+                            <span class="dice-desc">Médio</span>
+                        </button>
+                        <button class="dice-btn" onclick="rollDice(4)">
+                            <span class="dice-type">d4</span>
+                            <span class="dice-desc">Pequeno</span>
+                        </button>
+                        <button class="dice-btn" onclick="rollDice(12)">
+                            <span class="dice-type">d12</span>
+                            <span class="dice-desc">Grande</span>
+                        </button>
+                    </div>
+                    
+                    <div id="dice-log" class="log-box">
+                        <div class="log-header">ÚLTIMOS LANÇAMENTOS</div>
+                        <!-- Resultados dos dados aparecerão aqui -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coluna 3: Anotações -->
+            <section class="column">
+                <div class="column-header">
+                    <h2 class="section-title"><i class="fas fa-scroll"></i> RELATÓRIO DO MESTRE</h2>
+                    <div class="header-ornament"></div>
+                </div>
+                
+                <div class="notes-container">
+                    <textarea id="campaign-notes" class="paper-textarea" placeholder="Segredos guardados... Anotações da campanha, NPCs importantes, pistas, mistérios..."></textarea>
+                    <div class="notes-footer">
+                        <span id="notes-count">0 caracteres</span>
+                        <button class="btn-small" onclick="saveNotes()">
+                            <i class="fas fa-save"></i> Salvar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="stats-box">
+                    <h3><i class="fas fa-chart-bar"></i> ESTATÍSTICAS</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-value" id="total-chars">0</span>
+                            <span class="stat-label">Agentes</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="total-rolls">0</span>
+                            <span class="stat-label">Rolagens</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="avg-level">0</span>
+                            <span class="stat-label">Nível Médio</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="campaign-days">1</span>
+                            <span class="stat-label">Dia da Campanha</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Rodapé do jornal -->
+        <footer class="newspaper-footer">
+            <div class="footer-divider"></div>
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>"A única verdade é aquela que nos persegue nas sombras"</p>
+                </div>
+                <div class="footer-center">
+                    <p class="footer-title">LIMBO GAZETTE</p>
+                    <p class="footer-sub">Sistema de Registro de Agentes</p>
+                </div>
+                <div class="footer-right">
+                    <p>Edição: <span id="current-date"></span></p>
+                    <button class="btn-small" onclick="exportData()">
+                        <i class="fas fa-download"></i> Exportar Dados
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content paper-modal">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>CONFIRMAÇÃO DE EXTERMÍNIO</h3>
+            </div>
+            <p>Este arquivo será incinerado permanentemente. Esta ação não pode ser desfeita.</p>
+            <div class="modal-btns">
+                <button id="confirm-yes" class="btn-danger">
+                    <i class="fas fa-fire"></i> SIM, INCINERAR
+                </button>
+                <button onclick="closeModal()" class="btn-paper">
+                    <i class="fas fa-times"></i> CANCELAR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de aviso (para erros e informações) -->
+    <div id="alert-modal" class="modal">
+        <div class="modal-content paper-modal">
+            <div class="modal-header">
+                <i class="fas fa-info-circle"></i>
+                <h3>AVISO DO SISTEMA</h3>
+            </div>
+            <p id="alert-message"></p>
+            <div class="modal-btns">
+                <button onclick="closeAlert()" class="btn-paper">
+                    <i class="fas fa-check"></i> ENTENDIDO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

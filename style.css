@@ -1,0 +1,802 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&family=UnifrakturMaguntia&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --parchment: #f4ecd8;
+    --aged-paper: #e8dfc8;
+    --ink-dark: #1a1a1a;
+    --ink-faded: #4a4a4a;
+    --stain-brown: #8b4513;
+    --stain-red: #8b0000;
+    --stain-teal: #2f4f4f;
+    --gold-accent: #d4af37;
+}
+
+body.newspaper-theme {
+    background: #1a1a1a url('https://www.transparenttextures.com/patterns/black-paper.png');
+    font-family: 'Special Elite', serif;
+    color: var(--ink-dark);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.newspaper-container {
+    background: var(--parchment);
+    background-image: 
+        url('https://www.transparenttextures.com/patterns/paper.png'),
+        linear-gradient(to bottom, rgba(244, 236, 216, 0.9), rgba(232, 223, 200, 0.9));
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    border: 12px double var(--stain-brown);
+    position: relative;
+    box-shadow: 
+        0 0 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(139, 69, 19, 0.1);
+    overflow: hidden;
+}
+
+/* Efeitos de manchas no papel */
+.newspaper-container::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.newspaper-container::after {
+    content: "";
+    position: absolute;
+    bottom: 15%;
+    right: 8%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(47, 79, 79, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Cabeçalho do jornal */
+.newspaper-header {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.newspaper-masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-top: 3px double var(--ink-dark);
+    border-bottom: 3px double var(--ink-dark);
+}
+
+.masthead-left, .masthead-right {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--stain-brown);
+    letter-spacing: 1px;
+}
+
+.masthead-center {
+    text-align: center;
+    flex: 1;
+    padding: 0 20px;
+}
+
+.date-header {
+    font-family: 'Special Elite', serif;
+    font-size: 0.85rem;
+    color: var(--stain-red);
+    margin-bottom: 5px;
+    letter-spacing: 1.5px;
+}
+
+.newspaper-title {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 4.5rem;
+    color: var(--ink-dark);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    line-height: 1;
+}
+
+.subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--stain-teal);
+    margin-top: 5px;
+    letter-spacing: 3px;
+}
+
+.price, .location {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+}
+
+.header-divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--ink-dark), transparent);
+}
+
+.divider-text {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--stain-red);
+    padding: 0 20px;
+    letter-spacing: 2px;
+}
+
+/* Layout principal */
+.main-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.column-header {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--stain-teal);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--stain-brown);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title i {
+    color: var(--stain-red);
+}
+
+.header-ornament {
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--stain-brown) 0%, 
+        var(--gold-accent) 25%, 
+        var(--stain-brown) 50%, 
+        var(--gold-accent) 75%, 
+        var(--stain-brown) 100%);
+    margin-top: -2px;
+}
+
+/* Cartões de personagem */
+.char-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 200px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--ink-faded);
+    border: 2px dashed var(--stain-brown);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--stain-brown);
+    opacity: 0.5;
+}
+
+.empty-hint {
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.char-card-paper {
+    background: var(--aged-paper);
+    border: 1px solid var(--stain-brown);
+    border-left: 4px solid var(--stain-red);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.char-card-paper:hover {
+    transform: translateX(5px);
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.char-card-paper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.char-card-paper:hover::before {
+    transform: translateX(100%);
+}
+
+.char-card-paper strong {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--ink-dark);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.char-card-paper small {
+    color: var(--stain-teal);
+    font-size: 0.9rem;
+}
+
+.del-btn {
+    background: none;
+    border: 1px solid var(--stain-brown);
+    color: var(--stain-red);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.del-btn:hover {
+    background: var(--stain-red);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Painéis */
+.panel {
+    background: var(--aged-paper);
+    border: 1px solid var(--stain-brown);
+    padding: 20px;
+    box-shadow: inset 0 0 10px rgba(139, 69, 19, 0.1);
+}
+
+.panel-aged {
+    position: relative;
+    overflow: hidden;
+}
+
+.panel-aged::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.panel-header {
+    margin-bottom: 20px;
+}
+
+/* Iniciativa */
+.init-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.input-group {
+    flex: 1;
+    position: relative;
+}
+
+.paper-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--stain-brown);
+    padding: 8px 0;
+    font-family: 'Special Elite', serif;
+    font-size: 1rem;
+    color: var(--ink-dark);
+    transition: border-color 0.3s;
+}
+
+.paper-input:focus {
+    outline: none;
+    border-bottom-color: var(--stain-red);
+}
+
+.input-label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 0.8rem;
+    color: var(--stain-teal);
+    letter-spacing: 1px;
+}
+
+.init-list {
+    list-style: none;
+    margin-bottom: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.init-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    border-left: 3px solid var(--stain-teal);
+    border-radius: 2px;
+}
+
+.init-list li.highlight {
+    background: rgba(212, 175, 55, 0.2);
+    border-left-color: var(--gold-accent);
+    font-weight: bold;
+}
+
+.init-list li .init-value {
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    color: var(--stain-red);
+    background: rgba(139, 0, 0, 0.1);
+    padding: 2px 8px;
+    border-radius: 3px;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* Dados */
+.dice-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.dice-btn {
+    background: var(--aged-paper);
+    border: 2px solid var(--stain-brown);
+    padding: 15px 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Cinzel', serif;
+}
+
+.dice-btn:hover {
+    background: var(--stain-brown);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dice-type {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--stain-red);
+}
+
+.dice-desc {
+    font-size: 0.7rem;
+    color: var(--ink-faded);
+}
+
+.dice-btn:hover .dice-type {
+    color: white;
+}
+
+.log-box {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--stain-brown);
+    padding: 15px;
+    min-height: 150px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.log-header {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--stain-teal);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--stain-brown);
+}
+
+/* Anotações */
+.notes-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.paper-textarea {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--stain-brown);
+    padding: 15px;
+    font-family: 'Special Elite', serif;
+    font-size: 1rem;
+    color: var(--ink-dark);
+    resize: vertical;
+    min-height: 300px;
+    line-height: 1.6;
+}
+
+.paper-textarea:focus {
+    outline: none;
+    border-color: var(--stain-red);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.1);
+}
+
+.notes-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--stain-brown);
+    color: var(--ink-faded);
+    font-size: 0.9rem;
+}
+
+.stats-box {
+    background: var(--aged-paper);
+    border: 1px solid var(--stain-brown);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.stats-box h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--stain-teal);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--stain-brown);
+}
+
+.stat-value {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--stain-red);
+    font-weight: bold;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--stain-teal);
+    letter-spacing: 1px;
+}
+
+/* Botões */
+.btn-paper {
+    background: var(--stain-brown);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-paper:hover {
+    background: var(--stain-red);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+}
+
+.btn-small {
+    background: var(--aged-paper);
+    border: 1px solid var(--stain-brown);
+    color: var(--ink-dark);
+    padding: 8px 15px;
+    font-family: 'Special Elite', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-small:hover {
+    background: var(--stain-brown);
+    color: white;
+}
+
+.btn-clean {
+    background: transparent;
+    border: 1px solid var(--ink-faded);
+    color: var(--ink-faded);
+    padding: 8px 15px;
+    font-family: 'Special Elite', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-clean:hover {
+    background: var(--ink-faded);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--stain-red);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-danger:hover {
+    background: #660000;
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.paper-modal {
+    background: var(--parchment);
+    background-image: url('https://www.transparenttextures.com/patterns/paper.png');
+    padding: 30px;
+    border: 8px double var(--stain-brown);
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-header i {
+    font-size: 2.5rem;
+    color: var(--stain-red);
+    margin-bottom: 10px;
+}
+
+.modal-header h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--stain-teal);
+    font-size: 1.5rem;
+}
+
+.paper-modal p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.modal-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Rodapé */
+.newspaper-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 3px double var(--stain-brown);
+}
+
+.footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--stain-brown) 20%, 
+        transparent 40%, 
+        var(--gold-accent) 50%, 
+        transparent 60%, 
+        var(--stain-brown) 80%, 
+        transparent);
+    margin-bottom: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--ink-faded);
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+}
+
+.footer-center {
+    text-align: center;
+    flex: 2;
+}
+
+.footer-title {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 2rem;
+    color: var(--ink-dark);
+    line-height: 1;
+}
+
+.footer-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    color: var(--stain-teal);
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .newspaper-container {
+        padding: 15px;
+    }
+    
+    .newspaper-title {
+        font-size: 3rem;
+    }
+    
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .newspaper-masthead {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .masthead-left, .masthead-right {
+        text-align: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .dice-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Animação de digitação */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    0%, 100% { border-color: transparent }
+    50% { border-color: var(--stain-red) }
+}
+
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end);
+}
+
+/* Barra de rolagem personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--aged-paper);
+    border-left: 1px solid var(--stain-brown);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--stain-brown);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--stain-red);
+}
