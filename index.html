@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>LIMBO - Gazeta da Sobrevivência</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="newspaper-theme">
+    <div class="newspaper-container">
+        <header class="newspaper-header">
+            <div class="date-header">EDIÇÃO EXTRA | 10 DE MARÇO, 2015</div>
+            <h1>LIMBO: PROFECIAS INACABADAS</h1>
+            <div class="header-divider"></div>
+        </header>
+
+        <div class="main-layout">
+            <section class="column">
+                <h2 class="section-title">REGISTRO DE AGENTES</h2>
+                <div id="char-list" class="char-grid"></div>
+                <button class="btn-paper" onclick="newCharacter()">+ ALISTAR NOVO AGENTE</button>
+            </section>
+
+            <section class="column">
+                <div class="panel">
+                    <h2 class="section-title">ORDEM DE INICIATIVA</h2>
+                    <div class="init-row">
+                        <input type="text" id="init-name" placeholder="Nome">
+                        <input type="number" id="init-val" placeholder="Ini">
+                        <button onclick="addInitiative()">ADD</button>
+                    </div>
+                    <ul id="init-list" class="init-list"></ul>
+                    <button class="btn-clean" onclick="clearInitiative()">Limpar Tudo</button>
+                </div>
+                <div class="panel">
+                    <h2 class="section-title">SORTE OU AZAR</h2>
+                    <div class="dice-grid">
+                        <button onclick="rollDice(20)">d20</button>
+                        <button onclick="rollDice(6)">d6</button>
+                        <button onclick="rollDice(100)">d100</button>
+                    </div>
+                    <div id="dice-log" class="log-box"></div>
+                </div>
+            </section>
+
+            <section class="column">
+                <h2 class="section-title">RELATÓRIO DO MESTRE</h2>
+                <textarea id="campaign-notes" placeholder="Segredos guardados..." oninput="saveNotes()"></textarea>
+            </section>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content paper-modal">
+            <h3>TEM CERTEZA?</h3>
+            <p>Este arquivo será incinerado permanentemente.</p>
+            <div class="modal-btns">
+                <button id="confirm-yes" class="btn-danger">SIM, APAGAR</button>
+                <button onclick="closeModal()" class="btn-paper">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
