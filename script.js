@@ -22,12 +22,12 @@ function renderChars() {
 
 function newCharacter() {
     localStorage.removeItem('editing_idx');
-    window.location.href = 'page/criacao.html';
+    window.location.href = 'criacao.html';
 }
 
 function editChar(i) {
     localStorage.setItem('editing_idx', i);
-    window.location.href = 'page/criacao.html';
+    window.location.href = 'criacao.html';
 }
 
 // REMOÇÃO COM SEGURANÇA
@@ -74,4 +74,5 @@ function saveCharacter() {
 }
 
 // INICIALIZAÇÃO
+
 if(document.getElementById('char-list')) renderChars();
